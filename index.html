@@ -491,7 +491,7 @@ body::before {
     <div class="header-badge">DRINK OMAKASE</div>
     <h1>
       <span class="today">오늘도 커마카세</span>
-      <span class="also">오늘 음료, 또 맡겨드릴게요 ☕</span>
+      <span class="also">매일 고민인 음료 선택,<br>이번엔 제가 추천해드릴게요 ☕</span>
     </h1>
     <div class="coffee-divider">☕</div>
     <p class="header-sub">5가지 질문으로<br>오늘 딱 맞는 음료를 골라드려요</p>
@@ -948,7 +948,9 @@ function restart() {
 }
 
 // 시작
-renderQuestion();
+document.addEventListener('DOMContentLoaded', function() {
+  renderQuestion();
+});
 </script>
 </body>
 </html>
