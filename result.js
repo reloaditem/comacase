@@ -71,9 +71,7 @@ function shareKakao() {
     objectType: 'feed',
     content: {
       title: '오늘의 커마카세 ' + emoji + ' ' + drink,
-      description: sub + '
-
-나도 내 음료 찾아보기 👇',
+      description: sub + ' 나도 내 음료 찾아보기 👇',
       imageUrl: 'https://coffee.replaymylife.kr/images/og_image.png',
       link: {
         mobileWebUrl: 'https://coffee.replaymylife.kr',
