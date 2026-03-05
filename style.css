@@ -286,34 +286,40 @@ main {
   color: var(--foam);
 }
 
-/* ── 공유 버튼 ── */
-.share-row {
+/* ── 버튼 줄 ── */
+.btn-row-2 {
   display: flex;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
-.share-btn {
+/* ── 버튼 공통 ── */
+.action-btn {
   flex: 1;
-  padding: 13px 8px;
-  border-radius: 14px;
+  padding: 14px 10px;
+  border-radius: 50px;
   border: none;
   cursor: pointer;
   font-size: 13px;
   font-family: 'Noto Sans KR', sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 7px;
   transition: all 0.2s;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
 }
+.action-btn:hover { opacity: 0.88; transform: translateY(-2px); }
+.action-btn:active { transform: translateY(0); }
 
-.share-kakao { background: #FEE500; color: #3c1e1e; }
-.share-insta  { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
-.share-copy   { background: rgba(255,255,255,0.15); color: var(--cream); border: 1px solid rgba(255,255,255,0.2); }
-
-.share-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+/* ── 버튼 색상 ── */
+.btn-baemin  { background: linear-gradient(135deg, #2de2c4, #1ab8a0); color: #fff; }
+.btn-coupang { background: linear-gradient(135deg, #ff6b5b, #e63224); color: #fff; }
+.btn-insta   { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366); color: #fff; }
+.btn-share   { background: rgba(255,255,255,0.12); color: var(--cream); border: 1.5px solid rgba(255,255,255,0.3); box-shadow: none; }
 
 /* ── 다시하기 버튼 ── */
 .retry-btn {
