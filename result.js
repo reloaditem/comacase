@@ -90,23 +90,23 @@ function shareKakao() {
   });
 }
 
-// ── 인스타 이미지 저장 ──
+// ── 이미지 저장 (카드 영역만 캡처) ──
 async function saveImage() {
-  const card  = document.getElementById('result-card');
-  const toast = document.getElementById('toast');
+  const capture = document.getElementById('card-capture');
 
   try {
-    const canvas = await html2canvas(card, {
-      backgroundColor: null,
-      scale: 2,
-      useCORS: true
+    const canvas = await html2canvas(capture, {
+      backgroundColor: '#2c1a0e',
+      scale: 3,
+      useCORS: true,
+      logging: false
     });
     const link = document.createElement('a');
     const drink = document.getElementById('res-drink').textContent;
     link.download = `커마카세_${drink}.png`;
     link.href = canvas.toDataURL('image/png');
     link.click();
-    showToast('이미지 저장 완료! 인스타 스토리에 올려요 📸');
+    showToast('이미지 저장 완료! 📸');
   } catch (e) {
     alert('이미지 저장에 실패했어요. 다시 시도해주세요.');
   }
@@ -148,11 +148,23 @@ function orderCoupang() {
   }, 1500);
 }
 
-// ── 링크 복사 ──
-function copyLink() {
-  navigator.clipboard.writeText(window.location.href).then(() => {
-    showToast('링크가 복사됐어요! ☕');
-  });
+// ── 네이티브 공유 (폰 기본 공유 시트) ──
+function nativeShare() {
+  const drink = document.getElementById('res-drink').textContent;
+  const emoji = document.getElementById('res-emoji').textContent;
+
+  if (navigator.share) {
+    navigator.share({
+      title: '오늘의 커마카세 ' + emoji + ' ' + drink,
+      text: '내 오늘의 음료는 ' + drink + '! 너도 추천받아봐 ☕',
+      url: 'https://coffee.replaymylife.kr'
+    }).catch(() => {});
+  } else {
+    // 웹 공유 미지원 시 링크 복사로 fallback
+    navigator.clipboard.writeText('https://coffee.replaymylife.kr').then(() => {
+      showToast('링크가 복사됐어요! ☕');
+    });
+  }
 }
 
 // ── 토스트 알림 ──

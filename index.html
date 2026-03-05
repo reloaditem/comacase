@@ -44,23 +44,26 @@
     <!-- 결과 화면 -->
     <div id="result-screen">
       <div class="result-card" id="result-card">
-        <div class="result-label">오늘의 커마카세</div>
-        <span class="result-emoji" id="res-emoji"></span>
-        <div class="result-drink" id="res-drink"></div>
-        <div class="result-sub" id="res-sub"></div>
-        <div class="result-desc" id="res-desc"></div>
-        <div class="tags" id="res-tags"></div>
-
-        <div class="share-row">
-          <button class="share-btn share-kakao" onclick="shareKakao()">💬 카카오톡</button>
-          <button class="share-btn share-insta" onclick="saveImage()">📸 이미지 저장</button>
-          <button class="share-btn share-copy" onclick="copyLink()">🔗 링크복사</button>
+        <!-- 이미지 저장 영역 (버튼 위까지만) -->
+        <div id="card-capture">
+          <div class="result-label">오늘의 커마카세</div>
+          <span class="result-emoji" id="res-emoji"></span>
+          <div class="result-drink" id="res-drink"></div>
+          <div class="result-sub" id="res-sub"></div>
+          <div class="result-desc" id="res-desc"></div>
+          <div class="tags" id="res-tags"></div>
         </div>
 
-        <!-- 주문 버튼 -->
-        <div class="order-row">
-          <button class="order-btn baemin-btn" onclick="orderBaemin()">🛵 배민으로 주문</button>
-          <button class="order-btn coupang-btn" onclick="orderCoupang()">🧡 쿠팡이츠로 주문</button>
+        <!-- 주문 버튼 2개 -->
+        <div class="btn-row-2" style="margin-top:20px;">
+          <button class="action-btn btn-baemin" onclick="orderBaemin()">🛵 배달의 민족으로 가기</button>
+          <button class="action-btn btn-coupang" onclick="orderCoupang()">🧡 쿠팡이츠 가기</button>
+        </div>
+
+        <!-- 저장/공유 버튼 2개 -->
+        <div class="btn-row-2">
+          <button class="action-btn btn-insta" onclick="saveImage()">📸 이미지 저장</button>
+          <button class="action-btn btn-share" onclick="nativeShare()">↗ 공유하기</button>
         </div>
 
         <button class="retry-btn" onclick="restart()">↩ 다시 추천받기</button>
