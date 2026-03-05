@@ -88,8 +88,10 @@ header p {
 .ad-slot {
   width: 100%;
   max-width: 480px;
+  overflow: hidden;
   padding: 0 24px;
   margin-bottom: 8px;
+  text-align: center;
   position: relative;
   z-index: 1;
 }
