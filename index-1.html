@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>오늘도 커마카세 ☕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=DM+Serif+Display:ital@0;1&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8241483535984355" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- ① 구글 광고 (최상단) -->
+  <div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:320px;height:100px"
+         data-ad-client="ca-pub-8241483535984355"
+         data-ad-slot="7615464509"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- ② 헤더 -->
+  <header>
+    <div class="logo-tag">☕ Omakase</div>
+    <h1>오늘도<br><em>커마카세</em></h1>
+    <p>오늘의 나에게 딱 맞는<br>카페 음료를 찾아드려요</p>
+    <div class="divider"></div>
+  </header>
+
+  <main>
+
+    <!-- ③ 질문 화면 -->
+    <div id="quiz-screen">
+      <div class="progress-wrap" id="progress"></div>
+      <div class="card" id="question-card"></div>
+    </div>
+
+    <!-- 결과 화면 -->
+    <div id="result-screen">
+
+      <!-- ④ 카카오 광고 (결과 최상단) -->
+      <div class="ad-slot">
+        <ins class="kakao_ad_area"
+          data-ad-unit="DAN-IGejBmIVuw5w8uc0"
+          data-ad-width="320"
+          data-ad-height="100"></ins>
+      </div>
+
+      <!-- ⑤ 추천 카드 -->
+      <div class="result-card" id="result-card">
+        <div id="card-capture">
+          <div class="result-label">오늘의 커마카세</div>
+          <span class="result-emoji" id="res-emoji"></span>
+          <div class="result-drink" id="res-drink"></div>
+          <div class="result-sub" id="res-sub"></div>
+          <div class="result-desc" id="res-desc"></div>
+          <div class="tags" id="res-tags"></div>
+        </div>
+
+        <!-- 주문 버튼 -->
+        <div class="btn-row-2" style="margin-top:20px;">
+          <button class="action-btn btn-baemin" onclick="orderBaemin()">🛵 배달의 민족</button>
+          <button class="action-btn btn-coupang" onclick="orderCoupang()">🧡 쿠팡이츠</button>
+        </div>
+
+        <!-- 저장/공유 버튼 -->
+        <div class="btn-row-2">
+          <button class="action-btn btn-insta" onclick="saveImage()">📸 이미지 저장</button>
+          <button class="action-btn btn-share" onclick="nativeShare()">↗ 공유하기</button>
+        </div>
+
+        <button class="retry-btn" onclick="restart()">↩ 다시 추천받기</button>
+      </div>
+
+      <!-- ⑥ 구글 광고 (결과 하단) -->
+      <div class="ad-slot">
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:320px;height:100px"
+             data-ad-client="ca-pub-8241483535984355"
+             data-ad-slot="7615464509"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>© 2026 오늘도 커마카세 · All rights reserved</footer>
+  <div class="toast" id="toast">링크가 복사됐어요! ☕</div>
+
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4" crossorigin="anonymous"></script>
+  <script src="data.js"></script>
+  <script src="quiz.js"></script>
+  <script src="result.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+</body>
+</html>
