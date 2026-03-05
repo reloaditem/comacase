@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css" />
 
   <!-- ✅ AdSense 승인 후 주석 해제 + ca-pub-XXX 교체 -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8241483535984355" crossorigin="anonymous"></script>
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
 </head>
 <body>
 
@@ -57,6 +57,12 @@
           <button class="share-btn share-copy" onclick="copyLink()">🔗 링크복사</button>
         </div>
 
+        <!-- 주문 버튼 -->
+        <div class="order-row">
+          <button class="order-btn baemin-btn" onclick="orderBaemin()">🛵 배민으로 주문</button>
+          <button class="order-btn coupang-btn" onclick="orderCoupang()">🧡 쿠팡이츠로 주문</button>
+        </div>
+
         <button class="retry-btn" onclick="restart()">↩ 다시 추천받기</button>
 
         <!-- ✅ AdSense 승인 후 아래 ins 태그 주석 해제
@@ -78,6 +84,7 @@
   <div class="toast" id="toast">링크가 복사됐어요! ☕</div>
 
   <!-- JS 파일 로딩 순서 중요: data → quiz → result -->
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4" crossorigin="anonymous"></script>
   <script src="data.js"></script>
   <script src="quiz.js"></script>
   <script src="result.js"></script>

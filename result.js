@@ -53,9 +53,43 @@ function tagLabel(tag) {
   return map[tag] || tag;
 }
 
+// ── 카카오 SDK 초기화 ──
+function initKakao() {
+  if (window.Kakao && !window.Kakao.isInitialized()) {
+    window.Kakao.init('94b6d35d05072306a013f8ab95e6a736');
+  }
+}
+
 // ── 카카오톡 공유 ──
 function shareKakao() {
-  alert('카카오 SDK를 연동하면 공유 가능해요!\n카카오 개발자 콘솔에서 JS 키 발급 후 result.js 수정하세요.');
+  initKakao();
+  const drink = document.getElementById('res-drink').textContent;
+  const sub   = document.getElementById('res-sub').textContent;
+  const emoji = document.getElementById('res-emoji').textContent;
+
+  Kakao.Share.sendDefault({
+    objectType: 'feed',
+    content: {
+      title: '오늘의 커마카세 ' + emoji + ' ' + drink,
+      description: sub + '
+
+나도 내 음료 찾아보기 👇',
+      imageUrl: 'https://coffee.replaymylife.kr/images/og_image.png',
+      link: {
+        mobileWebUrl: 'https://coffee.replaymylife.kr',
+        webUrl: 'https://coffee.replaymylife.kr'
+      }
+    },
+    buttons: [
+      {
+        title: '나도 추천받기 ☕',
+        link: {
+          mobileWebUrl: 'https://coffee.replaymylife.kr',
+          webUrl: 'https://coffee.replaymylife.kr'
+        }
+      }
+    ]
+  });
 }
 
 // ── 인스타 이미지 저장 ──
@@ -78,6 +112,42 @@ async function saveImage() {
   } catch (e) {
     alert('이미지 저장에 실패했어요. 다시 시도해주세요.');
   }
+}
+
+// ── 배민 주문 딥링크 ──
+function orderBaemin() {
+  const drink = document.getElementById('res-drink').textContent;
+  const query = encodeURIComponent(drink);
+
+  // 배민 앱 딥링크 시도 → 없으면 웹으로 fallback
+  const appLink = `baemin://search?query=${query}`;
+  const webLink = `https://www.baemin.com/search/items?q=${query}`;
+
+  // 앱 링크 시도 후 1.5초 안에 안 열리면 웹으로
+  const start = Date.now();
+  window.location.href = appLink;
+  setTimeout(() => {
+    if (Date.now() - start < 2000) {
+      window.open(webLink, '_blank');
+    }
+  }, 1500);
+}
+
+// ── 쿠팡이츠 주문 딥링크 ──
+function orderCoupang() {
+  const drink = document.getElementById('res-drink').textContent;
+  const query = encodeURIComponent(drink);
+
+  const appLink = `coupangeats://search?keyword=${query}`;
+  const webLink = `https://www.coupangeats.com/search?query=${query}`;
+
+  const start = Date.now();
+  window.location.href = appLink;
+  setTimeout(() => {
+    if (Date.now() - start < 2000) {
+      window.open(webLink, '_blank');
+    }
+  }, 1500);
 }
 
 // ── 링크 복사 ──
