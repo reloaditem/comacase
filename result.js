@@ -6,6 +6,14 @@
 
 // ── 태그 기반 음료 추천 ──
 function recommend() {
+  // 10% 확률로 특수 음료 랜덤 등장 (아샷추/버블티/나이트로)
+  const specialDrinks = DRINKS.filter(d =>
+    d.tags.includes('special') || d.tags.includes('trendy') || d.tags.includes('bubble')
+  );
+  if (Math.random() < 0.10 && specialDrinks.length > 0) {
+    return specialDrinks[Math.floor(Math.random() * specialDrinks.length)];
+  }
+
   const scores = DRINKS.map(d => {
     let score = 0;
     answers.forEach(tag => {
@@ -14,8 +22,9 @@ function recommend() {
     return { d, score };
   });
 
+  // 최고점 -1 이내 음료 중 랜덤 선택 (다양성 확보)
   const max = Math.max(...scores.map(s => s.score));
-  const best = scores.filter(s => s.score === max);
+  const best = scores.filter(s => s.score >= max - 1);
   return best[Math.floor(Math.random() * best.length)].d;
 }
 
@@ -160,10 +169,21 @@ function nativeShare() {
       url: 'https://coffee.replaymylife.kr'
     }).catch(() => {});
   } else {
-    // 웹 공유 미지원 시 링크 복사로 fallback
-    navigator.clipboard.writeText('https://coffee.replaymylife.kr').then(() => {
+    // 웹 공유 미지원 시 textarea로 복사 fallback (삼성 인터넷 호환)
+    try {
+      const textarea = document.createElement('textarea');
+      textarea.value = 'https://coffee.replaymylife.kr';
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
       showToast('링크가 복사됐어요! ☕');
-    });
+    } catch(e) {
+      showToast('coffee.replaymylife.kr 을 공유해주세요 ☕');
+    }
   }
 }
 
