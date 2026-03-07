@@ -157,8 +157,25 @@ function orderCoupang() {
   }, 1500);
 }
 
-// ── 네이티브 공유 (폰 기본 공유 시트) ──
-function nativeShare() {
+// ── 브라우저 감지 ──
+function detectBrowser() {
+  const ua = navigator.userAgent;
+  if (/KAKAOTALK/i.test(ua)) return 'kakao';
+  if (/SamsungBrowser/i.test(ua)) return 'samsung';
+  return 'default';
+}
+
+// ── 공유하기 (브라우저별 자동 분기) ──
+function smartShare() {
+  const browser = detectBrowser();
+
+  // 삼성 인터넷 or 카카오 웹뷰 → 카카오톡 공유
+  if (browser === 'kakao' || browser === 'samsung') {
+    shareKakao();
+    return;
+  }
+
+  // 그 외 (Chrome, Safari 등) → 기본 공유 시트
   const drink = document.getElementById('res-drink').textContent;
   const emoji = document.getElementById('res-emoji').textContent;
 
@@ -169,7 +186,7 @@ function nativeShare() {
       url: 'https://coffee.replaymylife.kr'
     }).catch(() => {});
   } else {
-    // 웹 공유 미지원 시 textarea로 복사 fallback (삼성 인터넷 호환)
+    // 최후 fallback: 링크 복사
     try {
       const textarea = document.createElement('textarea');
       textarea.value = 'https://coffee.replaymylife.kr';
